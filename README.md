@@ -1,8 +1,8 @@
-﻿# baoyu-skills
+﻿# zz-skills
 
 English | [中文](./README.zh.md)
 
-Skills shared by Baoyu for improving daily work efficiency with Claude Code.
+Skills modified from those shared by Baoyu for improving daily work efficiency with Claude Code.
 
 ## Prerequisites
 

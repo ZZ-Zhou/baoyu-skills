@@ -1,8 +1,8 @@
-﻿# baoyu-skills
+﻿# zz-skills
 
 [English](./README.md) | 中文
 
-宝玉分享的 Claude Code 技能集，提升日常工作效率。
+修改自宝玉分享的 Claude Code 技能集，提升日常工作效率。
 
 ## 前置要求
 
