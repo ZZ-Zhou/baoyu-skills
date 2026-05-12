@@ -6,7 +6,7 @@
 
 | Requirement | Details |
 |-------------|---------|
-| **Prefix** | All skills MUST use `baoyu-` prefix |
+| **Prefix** | No required prefix — use a clear, descriptive name |
 | **name field** | Max 64 chars, lowercase letters/numbers/hyphens only, no "anthropic"/"claude" |
 | **description** | Max 1024 chars, third person, include what + when to use |
 | **SKILL.md body** | Keep under 500 lines; use `references/` for additional content |
@@ -16,12 +16,12 @@
 
 ```yaml
 ---
-name: baoyu-<name>
+name: <name>
 description: <Third-person description. What it does + when to use it.>
 version: <semver matching marketplace.json>
 metadata:
   openclaw:
-    homepage: https://github.com/JimLiu/baoyu-skills#baoyu-<name>
+    homepage: https://github.com/JimLiu/baoyu-skills#<name>
     requires:          # include only if skill has scripts
       anyBins:
         - bun
@@ -31,9 +31,9 @@ metadata:
 
 ## Steps
 
-1. Create `skills/baoyu-<name>/SKILL.md` with YAML front matter
-2. Add TypeScript in `skills/baoyu-<name>/scripts/` (if applicable)
-3. Add prompt templates in `skills/baoyu-<name>/prompts/` if needed
+1. Create `skills/<name>/SKILL.md` with YAML front matter
+2. Add TypeScript in `skills/<name>/scripts/` (if applicable)
+3. Add prompt templates in `skills/<name>/prompts/` if needed
 4. Register the skill in `.claude-plugin/marketplace.json` under the `baoyu-skills` plugin entry
 5. Add Script Directory section to SKILL.md if skill has scripts
 6. Add openclaw metadata to frontmatter
@@ -89,7 +89,7 @@ Every SKILL.md with scripts MUST include:
 For skills with extensive content:
 
 ```
-skills/baoyu-example/
+skills/example/
 ├── SKILL.md              # Main instructions (<500 lines)
 ├── references/
 │   ├── styles.md         # Loaded as needed
@@ -165,11 +165,11 @@ Standard snippet (copy verbatim):
 
 When this skill needs to render an image:
 
-- **Use whatever image-generation tool or skill is available** in the current runtime — e.g., Codex `imagegen`, Hermes `image_generate`, `baoyu-imagine`, or any equivalent the user has installed.
+- **Use whatever image-generation tool or skill is available** in the current runtime — e.g., Codex `imagegen`, Hermes `image_generate`, `imagine`, or any equivalent the user has installed.
 - **If multiple are available**, ask the user **once** at the start which to use (batch with any other initial questions).
 - **If none are available**, tell the user and ask how to proceed.
 
 **Prompt file requirement (hard)**: write each image's full, final prompt to a standalone file under `prompts/` (naming: `NN-{type}-[slug].md`) BEFORE invoking any backend. The backend receives the prompt file (or its content); the file is the reproducibility record and lets you switch backends without regenerating prompts.
 
-Concrete tool names (`imagegen`, `image_generate`, `baoyu-imagine`) above are examples — substitute the local equivalents under the same rule.
+Concrete tool names (`imagegen`, `image_generate`, `imagine`) above are examples — substitute the local equivalents under the same rule.
 ```

@@ -1,4 +1,4 @@
-# baoyu-skills
+﻿# baoyu-skills
 
 English | [中文](./README.zh.md)
 
@@ -32,8 +32,8 @@ This repository now supports publishing each `skills/baoyu-*` directory as an in
 ClawHub installs skills individually, not as one marketplace bundle. After publishing, users can install specific skills such as:
 
 ```bash
-clawhub install baoyu-imagine
-clawhub install baoyu-markdown-to-html
+clawhub install imagine
+clawhub install markdown-to-html
 ```
 
 Publishing to ClawHub releases the published skill under `MIT-0`, per ClawHub's registry rules.
@@ -97,32 +97,32 @@ Skills are organized into three categories:
 
 Content generation and publishing skills.
 
-#### baoyu-xhs-images
+#### xhs-images
 
 Xiaohongshu image card series generator. Breaks down content into 1-10 cartoon-style image cards with **Style × Layout** system and optional palette override.
 
 ```bash
 # Auto-select style and layout
-/baoyu-xhs-images posts/ai-future/article.md
+/xhs-images posts/ai-future/article.md
 
 # Specify style
-/baoyu-xhs-images posts/ai-future/article.md --style notion
+/xhs-images posts/ai-future/article.md --style notion
 
 # Specify layout
-/baoyu-xhs-images posts/ai-future/article.md --layout dense
+/xhs-images posts/ai-future/article.md --layout dense
 
 # Combine style and layout
-/baoyu-xhs-images posts/ai-future/article.md --style notion --layout list
+/xhs-images posts/ai-future/article.md --style notion --layout list
 
 # Override palette
-/baoyu-xhs-images posts/ai-future/article.md --style notion --palette macaron
+/xhs-images posts/ai-future/article.md --style notion --palette macaron
 
 # Direct content input
-/baoyu-xhs-images 今日星座运势
+/xhs-images 今日星座运势
 
 # Non-interactive (skip all confirmations, for scheduled tasks)
-/baoyu-xhs-images posts/ai-future/article.md --yes
-/baoyu-xhs-images posts/ai-future/article.md --yes --preset knowledge-card
+/xhs-images posts/ai-future/article.md --yes
+/xhs-images posts/ai-future/article.md --yes --preset knowledge-card
 ```
 
 **Styles** (visual aesthetics): `cute` (default), `fresh`, `warm`, `bold`, `minimal`, `retro`, `pop`, `notion`, `chalkboard`, `study-notes`, `screen-print`, `sketch-notes`
@@ -159,26 +159,26 @@ Xiaohongshu image card series generator. Breaks down content into 1-10 cartoon-s
 | ![list](./screenshots/xhs-images-layouts/list.webp) | ![comparison](./screenshots/xhs-images-layouts/comparison.webp) | ![flow](./screenshots/xhs-images-layouts/flow.webp) |
 | list | comparison | flow |
 
-#### baoyu-infographic
+#### infographic
 
 Generate professional infographics with 21 layout types and 21 visual styles. Analyzes content, recommends layout×style combinations, and generates publication-ready infographics.
 
 ```bash
 # Auto-recommend combinations based on content
-/baoyu-infographic path/to/content.md
+/infographic path/to/content.md
 
 # Specify layout
-/baoyu-infographic path/to/content.md --layout pyramid
+/infographic path/to/content.md --layout pyramid
 
 # Specify style (default: craft-handmade)
-/baoyu-infographic path/to/content.md --style technical-schematic
+/infographic path/to/content.md --style technical-schematic
 
 # Specify both
-/baoyu-infographic path/to/content.md --layout funnel --style corporate-memphis
+/infographic path/to/content.md --layout funnel --style corporate-memphis
 
 # With aspect ratio (named preset or custom W:H)
-/baoyu-infographic path/to/content.md --aspect portrait
-/baoyu-infographic path/to/content.md --aspect 3:4
+/infographic path/to/content.md --aspect portrait
+/infographic path/to/content.md --aspect 3:4
 ```
 
 **Options**:
@@ -272,22 +272,22 @@ Generate professional infographics with 21 layout types and 21 visual styles. An
 | ![knolling](./screenshots/infographic-styles/knolling.webp) | ![lego-brick](./screenshots/infographic-styles/lego-brick.webp) | |
 | knolling | lego-brick | |
 
-#### baoyu-diagram
+#### diagram
 
 Generate publication-ready SVG diagrams from source material — flowcharts, sequence/protocol diagrams, structural/architecture diagrams, and illustrative intuition diagrams. Analyzes input material to recommend diagram type(s) and splitting strategy, confirms the plan once, then generates all diagrams. Claude writes real SVG code directly following a cohesive design system. Output is self-contained `.svg` files with embedded styles and auto dark-mode.
 
 ```bash
 # Topic string — skill analyzes and proposes a plan
-/baoyu-diagram "how JWT authentication works"
-/baoyu-diagram "Kubernetes architecture" --type structural
-/baoyu-diagram "OAuth 2.0 flow"          --type sequence
+/diagram "how JWT authentication works"
+/diagram "Kubernetes architecture" --type structural
+/diagram "OAuth 2.0 flow"          --type sequence
 
 # File path — skill reads, analyzes, and proposes a plan
-/baoyu-diagram path/to/article.md
+/diagram path/to/article.md
 
 # Language and output path
-/baoyu-diagram "微服务架构" --lang zh
-/baoyu-diagram "build pipeline" --out docs/build-pipeline.svg
+/diagram "微服务架构" --lang zh
+/diagram "build pipeline" --out docs/build-pipeline.svg
 ```
 
 **Options**:
@@ -309,29 +309,29 @@ Generate publication-ready SVG diagrams from source material — flowcharts, seq
 
 Not an image-generation skill — no LLM image model is called. Claude writes the SVG by hand with hand-computed layout math, so every diagram honors the design system. Embedded `<style>` block with `@media (prefers-color-scheme: dark)` means the same file renders correctly in both light and dark mode anywhere it's embedded.
 
-#### baoyu-cover-image
+#### cover-image
 
 Generate cover images for articles with 5 dimensions: Type × Palette × Rendering × Text × Mood. Combines 11 color palettes with 7 rendering styles for 77 unique combinations.
 
 ```bash
 # Auto-select all dimensions based on content
-/baoyu-cover-image path/to/article.md
+/cover-image path/to/article.md
 
 # Quick mode: skip confirmation, use auto-selection
-/baoyu-cover-image path/to/article.md --quick
+/cover-image path/to/article.md --quick
 
 # Specify dimensions (5D system)
-/baoyu-cover-image path/to/article.md --type conceptual --palette cool --rendering digital
-/baoyu-cover-image path/to/article.md --text title-subtitle --mood bold
+/cover-image path/to/article.md --type conceptual --palette cool --rendering digital
+/cover-image path/to/article.md --text title-subtitle --mood bold
 
 # Style presets (backward-compatible shorthand)
-/baoyu-cover-image path/to/article.md --style blueprint
+/cover-image path/to/article.md --style blueprint
 
 # Specify aspect ratio (default: 16:9)
-/baoyu-cover-image path/to/article.md --aspect 2.35:1
+/cover-image path/to/article.md --aspect 2.35:1
 
 # Visual only (no title text)
-/baoyu-cover-image path/to/article.md --no-title
+/cover-image path/to/article.md --no-title
 ```
 
 **Five Dimensions**:
@@ -341,26 +341,26 @@ Generate cover images for articles with 5 dimensions: Type × Palette × Renderi
 - **Text**: `none`, `title-only` (default), `title-subtitle`, `text-rich`
 - **Mood**: `subtle`, `balanced` (default), `bold`
 
-#### baoyu-slide-deck
+#### slide-deck
 
 Generate professional slide deck images from content. Creates comprehensive outlines with style instructions, then generates individual slide images.
 
 ```bash
 # From markdown file
-/baoyu-slide-deck path/to/article.md
+/slide-deck path/to/article.md
 
 # With style and audience
-/baoyu-slide-deck path/to/article.md --style corporate
-/baoyu-slide-deck path/to/article.md --audience executives
+/slide-deck path/to/article.md --style corporate
+/slide-deck path/to/article.md --audience executives
 
 # Target slide count
-/baoyu-slide-deck path/to/article.md --slides 15
+/slide-deck path/to/article.md --slides 15
 
 # Outline only (no image generation)
-/baoyu-slide-deck path/to/article.md --outline-only
+/slide-deck path/to/article.md --outline-only
 
 # With language
-/baoyu-slide-deck path/to/article.md --lang zh
+/slide-deck path/to/article.md --lang zh
 ```
 
 **Options**:
@@ -427,31 +427,31 @@ Styles are built from 4 dimensions: **Texture** × **Mood** × **Typography** ×
 
 After generation, slides are automatically merged into `.pptx` and `.pdf` files for easy sharing.
 
-#### baoyu-comic
+#### comic
 
 Knowledge comic creator with flexible art style × tone combinations. Creates original educational comics with detailed panel layouts and sequential image generation.
 
 ```bash
 # From source material (auto-selects art + tone)
-/baoyu-comic posts/turing-story/source.md
+/comic posts/turing-story/source.md
 
 # Specify art style and tone
-/baoyu-comic posts/turing-story/source.md --art manga --tone warm
-/baoyu-comic posts/turing-story/source.md --art ink-brush --tone dramatic
+/comic posts/turing-story/source.md --art manga --tone warm
+/comic posts/turing-story/source.md --art ink-brush --tone dramatic
 
 # Use preset (includes special rules)
-/baoyu-comic posts/turing-story/source.md --style ohmsha
-/baoyu-comic posts/turing-story/source.md --style wuxia
+/comic posts/turing-story/source.md --style ohmsha
+/comic posts/turing-story/source.md --style wuxia
 
 # Specify layout and aspect ratio
-/baoyu-comic posts/turing-story/source.md --layout cinematic
-/baoyu-comic posts/turing-story/source.md --aspect 16:9
+/comic posts/turing-story/source.md --layout cinematic
+/comic posts/turing-story/source.md --aspect 16:9
 
 # Specify language
-/baoyu-comic posts/turing-story/source.md --lang zh
+/comic posts/turing-story/source.md --lang zh
 
 # Direct content input
-/baoyu-comic "The story of Alan Turing and the birth of computer science"
+/comic "The story of Alan Turing and the birth of computer science"
 ```
 
 **Options**:
@@ -513,19 +513,19 @@ Knowledge comic creator with flexible art style × tone combinations. Creates or
 | ![splash](./screenshots/comic-layouts/splash.webp) | ![mixed](./screenshots/comic-layouts/mixed.webp) | ![webtoon](./screenshots/comic-layouts/webtoon.webp) |
 | splash | mixed | webtoon |
 
-#### baoyu-article-illustrator
+#### article-illustrator
 
 Smart article illustration skill with Type × Style × Palette three-dimension approach. Analyzes article structure, identifies positions requiring visual aids, and generates illustrations.
 
 ```bash
 # Auto-select type and style based on content
-/baoyu-article-illustrator path/to/article.md
+/article-illustrator path/to/article.md
 
 # Specify type and style
-/baoyu-article-illustrator path/to/article.md --type flowchart --style notion
+/article-illustrator path/to/article.md --type flowchart --style notion
 
 # With palette override
-/baoyu-article-illustrator path/to/article.md --style vector-illustration --palette macaron
+/article-illustrator path/to/article.md --style vector-illustration --palette macaron
 ```
 
 **Types** (information structure):
@@ -571,7 +571,7 @@ Smart article illustration skill with Type × Style × Palette three-dimension a
 | ![editorial](./screenshots/article-illustrator-styles/editorial.webp) | ![scientific](./screenshots/article-illustrator-styles/scientific.webp) | |
 | editorial | scientific | |
 
-#### baoyu-post-to-x
+#### post-to-x
 
 Post content and articles to X (Twitter). Supports regular posts with images and X Articles (long-form Markdown). Uses real Chrome with CDP to bypass anti-automation.
 
@@ -579,33 +579,33 @@ Plain text input is treated as a regular post. Markdown files are treated as X A
 
 ```bash
 # Post with text
-/baoyu-post-to-x "Hello from Claude Code!"
+/post-to-x "Hello from Claude Code!"
 
 # Post with images
-/baoyu-post-to-x "Check this out" --image photo.png
+/post-to-x "Check this out" --image photo.png
 
 # Post X Article
-/baoyu-post-to-x --article path/to/article.md
+/post-to-x --article path/to/article.md
 ```
 
-#### baoyu-post-to-wechat
+#### post-to-wechat
 
 Post content to WeChat Official Account (微信公众号). Two modes available:
 
 **Image-Text (贴图)** - Multiple images with short title/content:
 
 ```bash
-/baoyu-post-to-wechat 贴图 --markdown article.md --images ./photos/
-/baoyu-post-to-wechat 贴图 --markdown article.md --image img1.png --image img2.png --image img3.png
-/baoyu-post-to-wechat 贴图 --title "标题" --content "内容" --image img1.png --submit
+/post-to-wechat 贴图 --markdown article.md --images ./photos/
+/post-to-wechat 贴图 --markdown article.md --image img1.png --image img2.png --image img3.png
+/post-to-wechat 贴图 --title "标题" --content "内容" --image img1.png --submit
 ```
 
 **Article (文章)** - Full markdown/HTML with rich formatting:
 
 ```bash
-/baoyu-post-to-wechat 文章 --markdown article.md
-/baoyu-post-to-wechat 文章 --markdown article.md --theme grace
-/baoyu-post-to-wechat 文章 --html article.html
+/post-to-wechat 文章 --markdown article.md
+/post-to-wechat 文章 --markdown article.md --theme grace
+/post-to-wechat 文章 --html article.html
 ```
 
 **Publishing Methods**:
@@ -634,10 +634,10 @@ To obtain credentials:
 **Multi-Account Support**: Manage multiple WeChat Official Accounts via `EXTEND.md`:
 
 ```bash
-mkdir -p .baoyu-skills/baoyu-post-to-wechat
+mkdir -p .baoyu-skills/post-to-wechat
 ```
 
-Create `.baoyu-skills/baoyu-post-to-wechat/EXTEND.md`:
+Create `.baoyu-skills/post-to-wechat/EXTEND.md`:
 
 ```yaml
 # Global settings (shared across all accounts)
@@ -672,7 +672,7 @@ accounts:
 
 Each account gets an isolated Chrome profile for independent login sessions (browser method). API credentials can be set inline in EXTEND.md or via `.env` with alias-prefixed keys (e.g., `WECHAT_TECH_BLOG_APP_ID`).
 
-#### baoyu-post-to-weibo
+#### post-to-weibo
 
 Post content to Weibo (微博). Supports regular posts with text, images, and videos, and headline articles (头条文章) with Markdown input. Uses real Chrome with CDP to bypass anti-automation.
 
@@ -680,23 +680,23 @@ Post content to Weibo (微博). Supports regular posts with text, images, and vi
 
 ```bash
 # Post with text
-/baoyu-post-to-weibo "Hello Weibo!"
+/post-to-weibo "Hello Weibo!"
 
 # Post with images
-/baoyu-post-to-weibo "Check this out" --image photo.png
+/post-to-weibo "Check this out" --image photo.png
 
 # Post with video
-/baoyu-post-to-weibo "Watch this" --video clip.mp4
+/post-to-weibo "Watch this" --video clip.mp4
 ```
 
 **Headline Articles (头条文章)** - Long-form Markdown:
 
 ```bash
 # Publish article
-/baoyu-post-to-weibo --article article.md
+/post-to-weibo --article article.md
 
 # With cover image
-/baoyu-post-to-weibo --article article.md --cover cover.jpg
+/post-to-weibo --article article.md --cover cover.jpg
 ```
 
 **Article Options**:
@@ -712,67 +712,67 @@ Post content to Weibo (微博). Supports regular posts with text, images, and vi
 
 AI-powered generation backends.
 
-#### baoyu-imagine
+#### imagine
 
 AI SDK-based image generation using OpenAI GPT Image 2, Azure OpenAI, Google, OpenRouter, DashScope (Aliyun Tongyi Wanxiang), MiniMax, Jimeng (即梦), Seedream (豆包), and Replicate APIs. Supports text-to-image, reference images, aspect ratios, custom sizes, batch generation, and quality presets.
 
 ```bash
 # Basic generation (auto-detect provider)
-/baoyu-imagine --prompt "A cute cat" --image cat.png
+/imagine --prompt "A cute cat" --image cat.png
 
 # With aspect ratio
-/baoyu-imagine --prompt "A landscape" --image landscape.png --ar 16:9
+/imagine --prompt "A landscape" --image landscape.png --ar 16:9
 
 # High quality (2k)
-/baoyu-imagine --prompt "A banner" --image banner.png --quality 2k
+/imagine --prompt "A banner" --image banner.png --quality 2k
 
 # Specific provider
-/baoyu-imagine --prompt "A cat" --image cat.png --provider openai --model gpt-image-2
+/imagine --prompt "A cat" --image cat.png --provider openai --model gpt-image-2
 
 # Azure OpenAI (model = deployment name)
-/baoyu-imagine --prompt "A cat" --image cat.png --provider azure --model gpt-image-2
+/imagine --prompt "A cat" --image cat.png --provider azure --model gpt-image-2
 
 # OpenRouter
-/baoyu-imagine --prompt "A cat" --image cat.png --provider openrouter
+/imagine --prompt "A cat" --image cat.png --provider openrouter
 
 # OpenRouter with reference images
-/baoyu-imagine --prompt "Make it blue" --image out.png --provider openrouter --model google/gemini-3.1-flash-image-preview --ref source.png
+/imagine --prompt "Make it blue" --image out.png --provider openrouter --model google/gemini-3.1-flash-image-preview --ref source.png
 
 # DashScope (Aliyun Tongyi Wanxiang)
-/baoyu-imagine --prompt "一只可爱的猫" --image cat.png --provider dashscope
+/imagine --prompt "一只可爱的猫" --image cat.png --provider dashscope
 
 # DashScope with custom size
-/baoyu-imagine --prompt "为咖啡品牌设计一张 21:9 横幅海报，包含清晰中文标题" --image banner.png --provider dashscope --model qwen-image-2.0-pro --size 2048x872
+/imagine --prompt "为咖啡品牌设计一张 21:9 横幅海报，包含清晰中文标题" --image banner.png --provider dashscope --model qwen-image-2.0-pro --size 2048x872
 
 # Z.AI GLM-Image
-/baoyu-imagine --prompt "一张带清晰中文标题的科技海报" --image out.png --provider zai
+/imagine --prompt "一张带清晰中文标题的科技海报" --image out.png --provider zai
 
 # MiniMax
-/baoyu-imagine --prompt "A fashion editorial portrait by a bright studio window" --image out.jpg --provider minimax
+/imagine --prompt "A fashion editorial portrait by a bright studio window" --image out.jpg --provider minimax
 
 # MiniMax with subject reference
-/baoyu-imagine --prompt "A girl stands by the library window, cinematic lighting" --image out.jpg --provider minimax --model image-01 --ref portrait.png --ar 16:9
+/imagine --prompt "A girl stands by the library window, cinematic lighting" --image out.jpg --provider minimax --model image-01 --ref portrait.png --ar 16:9
 
 # Replicate (default: google/nano-banana-2)
-/baoyu-imagine --prompt "A cat" --image cat.png --provider replicate
+/imagine --prompt "A cat" --image cat.png --provider replicate
 
 # Replicate Seedream 4.5
-/baoyu-imagine --prompt "A studio portrait" --image portrait.png --provider replicate --model bytedance/seedream-4.5 --ar 3:2
+/imagine --prompt "A studio portrait" --image portrait.png --provider replicate --model bytedance/seedream-4.5 --ar 3:2
 
 # Replicate Wan 2.7 Image Pro
-/baoyu-imagine --prompt "A concept frame" --image frame.png --provider replicate --model wan-video/wan-2.7-image-pro --size 2048x1152
+/imagine --prompt "A concept frame" --image frame.png --provider replicate --model wan-video/wan-2.7-image-pro --size 2048x1152
 
 # Jimeng (即梦)
-/baoyu-imagine --prompt "一只可爱的猫" --image cat.png --provider jimeng
+/imagine --prompt "一只可爱的猫" --image cat.png --provider jimeng
 
 # Seedream (豆包)
-/baoyu-imagine --prompt "一只可爱的猫" --image cat.png --provider seedream
+/imagine --prompt "一只可爱的猫" --image cat.png --provider seedream
 
 # With reference images (Google, OpenAI, Azure OpenAI, OpenRouter, Replicate, MiniMax, or Seedream 5.0/4.5/4.0)
-/baoyu-imagine --prompt "Make it blue" --image out.png --ref source.png
+/imagine --prompt "Make it blue" --image out.png --ref source.png
 
 # Batch mode
-/baoyu-imagine --batchfile batch.json --jobs 4 --json
+/imagine --batchfile batch.json --jobs 4 --json
 ```
 
 **Options**:
@@ -851,7 +851,7 @@ AI SDK-based image generation using OpenAI GPT Image 2, Azure OpenAI, Google, Op
 - MiniMax reference images are sent as `subject_reference`; the current API is specialized toward character / portrait consistency.
 - Jimeng does not support reference images.
 - Seedream reference images are supported by Seedream 5.0 / 4.5 / 4.0, not Seedream 3.0.
-- Replicate defaults to `google/nano-banana-2`. `baoyu-imagine` only enables Replicate advanced options for `google/nano-banana*`, `bytedance/seedream-4.5`, `bytedance/seedream-5-lite`, `wan-video/wan-2.7-image`, and `wan-video/wan-2.7-image-pro`.
+- Replicate defaults to `google/nano-banana-2`. `imagine` only enables Replicate advanced options for `google/nano-banana*`, `bytedance/seedream-4.5`, `bytedance/seedream-5-lite`, `wan-video/wan-2.7-image`, and `wan-video/wan-2.7-image-pro`.
 - Replicate currently saves exactly one output image per request. `--n > 1` is blocked locally instead of silently dropping extra results.
 - Replicate model behavior is family-specific: nano-banana uses `--quality` / `--ar`, Seedream uses validated `--size` / `--ar`, and Wan uses validated `--size` (with `--ar` converted locally to a concrete size).
 
@@ -861,47 +861,47 @@ AI SDK-based image generation using OpenAI GPT Image 2, Azure OpenAI, Google, Op
 3. If only one API key is available → use that provider
 4. If multiple providers are available → default to Google, then OpenAI, Azure, OpenRouter, DashScope, Z.AI, MiniMax, Replicate, Jimeng, Seedream
 
-#### baoyu-danger-gemini-web
+#### danger-gemini-web
 
 Interacts with Gemini Web to generate text and images.
 
 **Text Generation:**
 
 ```bash
-/baoyu-danger-gemini-web "Hello, Gemini"
-/baoyu-danger-gemini-web --prompt "Explain quantum computing"
+/danger-gemini-web "Hello, Gemini"
+/danger-gemini-web --prompt "Explain quantum computing"
 ```
 
 **Image Generation:**
 
 ```bash
-/baoyu-danger-gemini-web --prompt "A cute cat" --image cat.png
-/baoyu-danger-gemini-web --promptfiles system.md content.md --image out.png
+/danger-gemini-web --prompt "A cute cat" --image cat.png
+/danger-gemini-web --promptfiles system.md content.md --image out.png
 ```
 
 ### Utility Skills
 
 Utility tools for content processing.
 
-#### baoyu-youtube-transcript
+#### youtube-transcript
 
 Download YouTube video transcripts/subtitles and cover images. Supports multiple languages, translation, chapters, and speaker identification. Caches raw data for fast re-formatting.
 
 ```bash
 # Default: markdown with timestamps
-/baoyu-youtube-transcript https://www.youtube.com/watch?v=VIDEO_ID
+/youtube-transcript https://www.youtube.com/watch?v=VIDEO_ID
 
 # Specify languages (priority order)
-/baoyu-youtube-transcript https://youtu.be/VIDEO_ID --languages zh,en,ja
+/youtube-transcript https://youtu.be/VIDEO_ID --languages zh,en,ja
 
 # With chapters and speaker identification
-/baoyu-youtube-transcript https://youtu.be/VIDEO_ID --chapters --speakers
+/youtube-transcript https://youtu.be/VIDEO_ID --chapters --speakers
 
 # SRT subtitle format
-/baoyu-youtube-transcript https://youtu.be/VIDEO_ID --format srt
+/youtube-transcript https://youtu.be/VIDEO_ID --format srt
 
 # List available transcripts
-/baoyu-youtube-transcript https://youtu.be/VIDEO_ID --list
+/youtube-transcript https://youtu.be/VIDEO_ID --list
 ```
 
 **Options**:
@@ -917,19 +917,19 @@ Download YouTube video transcripts/subtitles and cover images. Supports multiple
 | `--list` | List available transcripts | |
 | `--refresh` | Force re-fetch, ignore cache | |
 
-#### baoyu-url-to-markdown
+#### url-to-markdown
 
 Fetch any URL via Chrome CDP and convert to clean markdown. Saves rendered HTML snapshot alongside the markdown, and automatically falls back to a legacy extractor when Defuddle fails.
 
 ```bash
 # Auto mode (default) - capture when page loads
-/baoyu-url-to-markdown https://example.com/article
+/url-to-markdown https://example.com/article
 
 # Wait mode - for login-required pages
-/baoyu-url-to-markdown https://example.com/private --wait
+/url-to-markdown https://example.com/private --wait
 
 # Save to specific file
-/baoyu-url-to-markdown https://example.com/article -o output.md
+/url-to-markdown https://example.com/article -o output.md
 ```
 
 **Capture Modes**:
@@ -946,22 +946,22 @@ Fetch any URL via Chrome CDP and convert to clean markdown. Saves rendered HTML 
 | `--wait` | Wait for user signal before capturing |
 | `--timeout <ms>` | Page load timeout (default: 30000) |
 
-#### baoyu-danger-x-to-markdown
+#### danger-x-to-markdown
 
 Converts X (Twitter) content to markdown format. Supports tweet threads and X Articles.
 
 ```bash
 # Convert tweet to markdown
-/baoyu-danger-x-to-markdown https://x.com/username/status/123456
+/danger-x-to-markdown https://x.com/username/status/123456
 
 # Save to specific file
-/baoyu-danger-x-to-markdown https://x.com/username/status/123456 -o output.md
+/danger-x-to-markdown https://x.com/username/status/123456 -o output.md
 
 # JSON output
-/baoyu-danger-x-to-markdown https://x.com/username/status/123456 --json
+/danger-x-to-markdown https://x.com/username/status/123456 --json
 
 # Download media (images/videos) to local files
-/baoyu-danger-x-to-markdown https://x.com/username/status/123456 --download-media
+/danger-x-to-markdown https://x.com/username/status/123456 --download-media
 ```
 
 **Supported URLs:**
@@ -971,25 +971,25 @@ Converts X (Twitter) content to markdown format. Supports tweet threads and X Ar
 
 **Authentication:** Uses environment variables (`X_AUTH_TOKEN`, `X_CT0`) or Chrome login for cookie-based auth.
 
-#### baoyu-compress-image
+#### compress-image
 
 Compress images to reduce file size while maintaining quality.
 
 ```bash
-/baoyu-compress-image path/to/image.png
-/baoyu-compress-image path/to/images/ --quality 80
+/compress-image path/to/image.png
+/compress-image path/to/images/ --quality 80
 ```
 
-#### baoyu-format-markdown
+#### format-markdown
 
 Format plain text or markdown files with proper frontmatter, titles, summaries, headings, bold, lists, and code blocks.
 
 ```bash
 # Format a markdown file
-/baoyu-format-markdown path/to/article.md
+/format-markdown path/to/article.md
 
 # Format with specific output
-/baoyu-format-markdown path/to/draft.md
+/format-markdown path/to/draft.md
 ```
 
 **Workflow**:
@@ -1017,22 +1017,22 @@ Format plain text or markdown files with proper frontmatter, titles, summaries, 
 | Code/commands | `` `inline` `` or ` ```block``` ` |
 | Quotes | `>` blockquote |
 
-#### baoyu-markdown-to-html
+#### markdown-to-html
 
 Convert markdown files into styled HTML with WeChat-compatible themes, syntax highlighting, and optional bottom citations for external links.
 
 ```bash
 # Basic conversion
-/baoyu-markdown-to-html article.md
+/markdown-to-html article.md
 
 # Theme + color
-/baoyu-markdown-to-html article.md --theme grace --color red
+/markdown-to-html article.md --theme grace --color red
 
 # Convert ordinary external links to bottom citations
-/baoyu-markdown-to-html article.md --cite
+/markdown-to-html article.md --cite
 ```
 
-#### baoyu-translate
+#### translate
 
 Translate articles and documents between languages with three modes: quick (direct), normal (analysis-informed), and refined (full publication-quality workflow with review and polish).
 
@@ -1117,7 +1117,7 @@ Custom style descriptions are also accepted, e.g., `--style "poetic and lyrical"
 Some skills require API keys or custom configuration. Environment variables can be set in `.env` files:
 
 **Load Priority** (higher priority overrides lower):
-1. CLI environment variables (e.g., `OPENAI_API_KEY=xxx /baoyu-imagine ...`)
+1. CLI environment variables (e.g., `OPENAI_API_KEY=xxx /imagine ...`)
 2. `process.env` (system environment)
 3. `<cwd>/.baoyu-skills/.env` (project-level)
 4. `~/.baoyu-skills/.env` (user-level)
@@ -1204,13 +1204,13 @@ All skills support customization via `EXTEND.md` files. Create an extension file
 1. `.baoyu-skills/<skill-name>/EXTEND.md` - Project-level (for team/project-specific settings)
 2. `~/.baoyu-skills/<skill-name>/EXTEND.md` - User-level (for personal preferences)
 
-**Example**: To customize `baoyu-cover-image` with your brand colors:
+**Example**: To customize `cover-image` with your brand colors:
 
 ```bash
-mkdir -p .baoyu-skills/baoyu-cover-image
+mkdir -p .baoyu-skills/cover-image
 ```
 
-Then create `.baoyu-skills/baoyu-cover-image/EXTEND.md`:
+Then create `.baoyu-skills/cover-image/EXTEND.md`:
 
 ```markdown
 ## Custom Palettes
@@ -1227,7 +1227,7 @@ The extension content will be loaded before skill execution and override default
 
 ## Disclaimer
 
-### baoyu-danger-gemini-web
+### danger-gemini-web
 
 This skill uses the Gemini Web API (reverse-engineered).
 
@@ -1242,10 +1242,10 @@ This skill uses the Gemini Web API (reverse-engineered).
 **Proxy configuration**: If you need a proxy to access Google services (e.g., in China), set environment variables inline:
 
 ```bash
-HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 /baoyu-danger-gemini-web "Hello"
+HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890 /danger-gemini-web "Hello"
 ```
 
-### baoyu-danger-x-to-markdown
+### danger-x-to-markdown
 
 This skill uses a reverse-engineered X (Twitter) API.
 
